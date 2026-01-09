@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 
 from pathlib import Path
 from decouple import config
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -26,7 +27,7 @@ SECRET_KEY = config('SECRET_KEY')
 DEBUG = config('DEBUG', cast=bool)
 
 ALLOWED_HOSTS = []
-
+AUTH_USER_MODEL = 'accounts.User'
 
 # Application definition
 
@@ -37,6 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'accounts.apps.AccountsConfig',
+    
 ]
 
 MIDDLEWARE = [
@@ -112,6 +115,10 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 
 USE_TZ = True
+
+#media file configuration
+MEDIAL_URL = 'media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
 
 # Static files (CSS, JavaScript, Images)
