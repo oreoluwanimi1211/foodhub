@@ -3,9 +3,7 @@ from django.contrib.auth.models import PermissionsMixin
 from django.contrib.auth.base_user import AbstractBaseUser
 from django.utils.translation import gettext_lazy as _
 from .managers import UserManager
-
-
-
+# from django.db.models.fields.related import ForeignKey, OneToOneField
 
 
 class User(AbstractBaseUser, PermissionsMixin):
@@ -16,7 +14,7 @@ class User(AbstractBaseUser, PermissionsMixin):
        ( RESTAURANT, 'Restaurant'),
        (CUSTOMER, 'Customer'),
     )
-    email = models.EmailField(_('email address'),max_length=100, unique=True)
+    email = models.EmailField(_('email address'),max_length=100, unique=True, blank=True, null=True)
     username = models.CharField(_('username'), max_length=100, unique=True)
     first_name = models.CharField(_('first name'),max_length=100, blank=True)
     phone_no = models.CharField(_('phone number'), max_length=11, blank=True)
@@ -30,6 +28,9 @@ class User(AbstractBaseUser, PermissionsMixin):
     Created_date =models.DateTimeField(_('last login'), auto_now_add=True)
     modifield_date=models.DateTimeField(_('modifield date'), auto_now_add=True)
 
+    def __str__(self):
+         return str(self.email or self.username or self.pk)
+
     objects = UserManager()
 
     USERNAME_FIELD = 'email'
@@ -38,7 +39,7 @@ class User(AbstractBaseUser, PermissionsMixin):
 
 
 class UserProfile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, blank=True, null= True)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, blank=True, null= True, related_name = 'profile')
     profile_picture = models.ImageField(upload_to='users/profile_pictures', blank=True, null=True)
     cover_photo = models.ImageField(upload_to='users/cover_photos', blank=True, null=True)
     address_line_1 = models.CharField(max_length=50, blank=True, null=True)
@@ -51,17 +52,17 @@ class UserProfile(models.Model):
     longitude = models.CharField(max_length=20, blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     modifield_at = models.DateTimeField(auto_now_add=True)
-    
 
+    class Meta:
+        verbose_name_plural = 'User Profile'
+    
     def __str__(self):
-        return self.user.email
-
-                        
+         return str(self.user.username)
 
 
-
-
-
+        # def __str__(self):
+        #  Return the linked user's username or email or fallback to id
+        #  return str(self.user.username or self.user.email or self.pk)
 
 
 
@@ -69,44 +70,6 @@ class UserProfile(models.Model):
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
 # class User(AbstractBaseUser, PermissionsMixin):
 #     RESTAURANT = 1
 #     CUSTOMER = 2
