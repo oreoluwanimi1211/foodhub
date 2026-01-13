@@ -64,37 +64,3 @@ class UserProfile(models.Model):
         #  Return the linked user's username or email or fallback to id
         #  return str(self.user.username or self.user.email or self.pk)
 
-
-
-
-
-
-
-# class User(AbstractBaseUser, PermissionsMixin):
-#     RESTAURANT = 1
-#     CUSTOMER = 2
-
-#     ROLE_CHOICE =(
-#        ( RESTAURANT, 'Restaurant'),
-#        (CUSTOMER, 'Customer'),
-#     )
-#     email = models.EmailField(_('email address'),max_length=100, unique=True)
-#     username = models.CharField(_('username'), max_length=100, unique=True)
-#     first_name = models.CharField(_('first name'),max_length=100, blank=True)
-#     phone_no = models.CharField(_('phone number'), max_length=11, blank=True)
-#     last_name = models.CharField(_('last name'),max_length=100, blank=True)
-#     date_joined = models.DateTimeField(_('date joined'),auto_now_add=True)
-#     is_active = models.BooleanField(_('active'),default=True)
-#     is_staff = models.BooleanField(_('staff status'),default=False)
-#     role = models.PositiveSmallIntegerField(_('role '),choices=ROLE_CHOICE, on_delete=models.CASCADE)
-#     is_superuser = models.BooleanField(_('superuser status'),default=False)
-#     role = models.CharField(_('staff status'),choices=ROLE_CHOICE, on_delete=models.CASCADE)
-#     last_login = models.DateTimeField(_('last login'), auto_now_add=True)
-#     Created_date =models.DateTimeField(_('last login'), auto_now_add=True)
-#     modifield_date=models.DateTimeField(_('modifield date'), auto_now_add=True)
-
-
-#     objects = UserManager()
-
-#     USERNAME_FIELD = 'email'
-#     REQUIRED_FIELDS = []

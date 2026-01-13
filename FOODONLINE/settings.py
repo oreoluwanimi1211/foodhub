@@ -129,3 +129,9 @@ STATIC_ROOT = BASE_DIR/'static'
 STATICFILES_DIRS = [
     'FOODONLINE/static'
 ]
+
+from django.contrib.messages import constants as messages
+
+MESSAGE_TAGS = {
+    messages.ERROR: 'danger',
+}

@@ -26,7 +26,7 @@ def registeruser(request):
             user.role = User.CUSTOMER
             user.save()
 
-            messages.success(request, 'your account has been register succesfully!')
+            messages.error(request, 'your account has been register succesfully!')
             return redirect('registeruser')
         else:
             print('invalid form')
