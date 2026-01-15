@@ -28,6 +28,7 @@ DEBUG = config('DEBUG', cast=bool)
 
 ALLOWED_HOSTS = []
 AUTH_USER_MODEL = 'accounts.User'
+#CSRF_TRUSTED_ORIGINS=[]
 
 # Application definition
 
@@ -39,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'accounts.apps.AccountsConfig',
+    'vendor.apps.VendorConfig',
     
 ]
 

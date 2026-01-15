@@ -7,11 +7,11 @@ from .managers import UserManager
 
 
 class User(AbstractBaseUser, PermissionsMixin):
-    RESTAURANT = 1
+    VENDOR = 1
     CUSTOMER = 2
 
     ROLE_CHOICE =(
-       ( RESTAURANT, 'Restaurant'),
+       ( VENDOR, 'Vendor'),
        (CUSTOMER, 'Customer'),
     )
     email = models.EmailField(_('email address'),max_length=100, unique=True, blank=True, null=True)
@@ -35,7 +35,6 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
-
 
 
 class UserProfile(models.Model):
