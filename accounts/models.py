@@ -3,6 +3,8 @@ from django.contrib.auth.models import PermissionsMixin
 from django.contrib.auth.base_user import AbstractBaseUser
 from django.utils.translation import gettext_lazy as _
 from .managers import UserManager
+from django.dispatch import receiver
+from django.db.models.signals import post_save
 # from django.db.models.fields.related import ForeignKey, OneToOneField
 
 
@@ -36,6 +38,26 @@ class User(AbstractBaseUser, PermissionsMixin):
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
 
+    def get_role(self):
+        if self.role == 1:
+            user_role = 'Vendor'
+        elif self.role == 2:
+            user_role = 'Customer'
+        return user_role
+
+    
+
+@receiver(post_save, sender=User)
+def create_user_profile(sender, instance, created, **kwargs):
+    if created:
+        UserProfile.objects.create(user=instance)
+
+
+@receiver(post_save, sender=User)
+def save_user_profile(sender, instance, **kwargs):
+    instance.profile.save()
+
+
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, blank=True, null= True, related_name = 'profile')
@@ -57,6 +79,9 @@ class UserProfile(models.Model):
     
     def __str__(self):
          return str(self.user.username)
+
+
+    
 
 
         # def __str__(self):
