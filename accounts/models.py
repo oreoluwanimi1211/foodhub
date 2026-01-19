@@ -16,7 +16,7 @@ class User(AbstractBaseUser, PermissionsMixin):
        ( VENDOR, 'Vendor'),
        (CUSTOMER, 'Customer'),
     )
-    email = models.EmailField(_('email address'),max_length=100, unique=True, blank=True, null=True)
+    email = models.EmailField(_('email address'),max_length=100, unique=True)
     username = models.CharField(_('username'), max_length=100, unique=True)
     first_name = models.CharField(_('first name'),max_length=100, blank=True)
     phone_no = models.CharField(_('phone number'), max_length=11, blank=True)
@@ -31,12 +31,12 @@ class User(AbstractBaseUser, PermissionsMixin):
     modifield_date=models.DateTimeField(_('modifield date'), auto_now_add=True)
 
     def __str__(self):
-         return str(self.email or self.username or self.pk)
+        return str(self.email)
 
     objects = UserManager()
 
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = []
+    REQUIRED_FIELDS = ['username']
 
     def get_role(self):
         if self.role == 1:
@@ -78,7 +78,7 @@ class UserProfile(models.Model):
         verbose_name_plural = 'User Profile'
     
     def __str__(self):
-         return str(self.user.username)
+         return str(self.user.email)
 
 
     
