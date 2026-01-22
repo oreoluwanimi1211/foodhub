@@ -1,6 +1,7 @@
-# from django.urls import path
-# from .views import vendorregistration
-
-# urlpatterns = [
-#     path('vendor-registration/', views.vendorregistration, name='vendor-registration'),
-# ]
+from django.urls import path,include
+from accounts import views as AccountView
+from . import views
+urlpatterns=[
+    path('', AccountView.VendorDashboard, name = 'vendor'),
+    path('profile/', views.VendorProfile, name = 'VendorProfile'),
+]

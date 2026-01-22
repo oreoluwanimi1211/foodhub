@@ -74,6 +74,9 @@ class UserProfile(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     modifield_at = models.DateTimeField(auto_now_add=True)
 
+    def full_address(self):
+        return f'{self.address_line_1},{self.address_line_2}'
+
     class Meta:
         verbose_name_plural = 'User Profile'
     

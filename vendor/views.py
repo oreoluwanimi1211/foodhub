@@ -1,5 +1,4 @@
 from django.shortcuts import render
 
-
-def vendorregistration(request):
-    return response(request, 'accounts/registervendor.html')
+def VendorProfile(request):
+    return render(request, 'vendor/VendorProfile.html')

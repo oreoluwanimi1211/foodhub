@@ -8,6 +8,7 @@ from django.contrib.auth.decorators import login_required, user_passes_test
 from django.core.exceptions import PermissionDenied
 from django.utils.http import urlsafe_base64_decode
 from django.contrib.auth.tokens import default_token_generator
+from vendor.models import Vendor
 
 # restrict the Vendor for accessing the customer page
 def check_role_vendor(user):
@@ -148,7 +149,7 @@ def activate(request, uidb64, token):
 def login(request):
     if request.user.is_authenticated:
         messages.warning(request, 'your are already logged in!')
-        return redirect('dashboard')
+        return redirect('login')
     elif request.method == 'POST':
         email = request.POST['email']
         password = request.POST['password']
@@ -224,4 +225,19 @@ def ResetPasswordValidate(request, uidb64, token):
 
 
 def ResetPassword(request):
+    if request.method == 'POST':
+        password = request.POST['Password']
+        confirm_password = request.POST['confirm_password']
+
+        if password == confirm_password:
+            pk = request.session.get('uid')
+            user = User.objects.get(pk=pk)
+            user.set_password(password)
+            user.is_active = True
+            user.save()
+            messages.success(request, 'password reset successful')
+            return redirect('login')
+        else:
+            messages.error(request, 'password does not match')
+            return redirect ('ResetPassword')
     return render(request, 'accounts/ResetPassword.html')
