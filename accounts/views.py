@@ -29,7 +29,7 @@ def registeruser(request):
         messages.warning(request, 'your are already logged in!')
         return redirect('CustomerDashboard')
     elif request.method == 'POST':
-        print(request.POST)
+        #print(request.POST)
         form = UserRegistrationForm(request.POST)
         if form.is_valid():
             # create user using the form
@@ -98,7 +98,6 @@ def registervendor(request):
             user.save()
             
             user_profile, created = UserProfile.objects.get_or_create(user=user)
-
             vendor = v_form.save(commit=False)
             vendor.user = user
             vendor.user_profile = user_profile
@@ -145,7 +144,6 @@ def activate(request, uidb64, token):
             return redirect('myaccount')
 
 
-
 def login(request):
     if request.user.is_authenticated:
         messages.warning(request, 'your are already logged in!')
@@ -153,7 +151,6 @@ def login(request):
     elif request.method == 'POST':
         email = request.POST['email']
         password = request.POST['password']
-
         user = auth.authenticate(email=email, password=password)
 
         if user is not None:
