@@ -11,4 +11,9 @@ urlpatterns=[
     path('menu-builder/category/create/', views.CreateCategory, name='CreateCategory'),
     path('menu-builder/category/update/<int:pk>/', views.UpdateCategory, name='UpdateCategory'),
     path('menu-builder/category/delete/<int:pk>/', views.DeleteCategory, name='DeleteCategory'),
+
+    # food CRUD
+    path('menu-builder/food/create/', views.CreateFood, name='CreateFood'),
+    path('menu-builder/food/update/<int:pk>/', views.UpdateFood, name='UpdateFood'),
+    path('menu-builder/food/delete/<int:pk>/', views.DeleteFood, name='DeleteFood'),
 ]

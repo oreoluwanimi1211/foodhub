@@ -20,7 +20,7 @@
 								<div class="user-holder">
 									<h5 class="text-uppercase">Build Your Food Menu</h5>
                                     <button class="btn btn-secondary" onclick="history.back()"><i class="fa fa-angle-left" aria-hidden="true"></i> Back</button>
-                                    <br>
+                                    <br><br>
                                     <h6>Category: <span class="text-uppercase text-success">{{category}}</span></h6>
                                     
                                 {% if fooditems %}
@@ -37,8 +37,7 @@
                                             <small class="text-muted">{{ food.price }}</small></a>
                                             <small class="text-muted">{{ food.description }}</small></a>
                                         </td>
-                                        <td><i class="fa fa-pencil" aria-hidden="true"> &nbsp; </i> <i class="fa fa-trash text-danger" aria-hidden="true"></i></td>
-                                        
+                                        <td><a href="{% url 'UpdateFood' food.id %}"><i class="fa fa-pencil" aria-hidden="true"></a> &nbsp; <a href="{% url 'DeleteFood' food.id %}" onclick="return confirm ('Are you sure you want to delete these food item?')"></i><i class="fa fa-trash text-danger" aria-hidden="true"></a></i></td>
                                         </tr>
                                     {% endfor %}
                                     </tbody>
