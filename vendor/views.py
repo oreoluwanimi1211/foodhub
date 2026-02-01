@@ -144,11 +144,12 @@ def CreateFood(request):
             print(form.errors)
     else:
         form = CreateFoodForm()
+        #modify this form to return absolute category that belong to the particular vendor
+        form.fields['category'].queryset = Category.objects.filter(vendor=get_vendor(request))
     context = {
         'form':form,
     }
     return render(request, 'vendor/CreateFood.html', context)
-
 
 
 @login_required(login_url = 'login')
@@ -169,6 +170,8 @@ def UpdateFood(request, pk=None):
             print(form.errors)
     else:
         form = CreateFoodForm(instance=food)
+        #modify this form to return absolute category that belong to the particular vendor
+        form.fields['category'].queryset = Category.objects.filter(vendor=get_vendor(request))
     context = {
         'form': form,
         'food': food,
