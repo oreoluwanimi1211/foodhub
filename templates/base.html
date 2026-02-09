@@ -1,5 +1,6 @@
 {% load static %}
 
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -23,7 +24,11 @@
 	<link href="{% static 'css/iconmoon.css' %}" rel="stylesheet">
 	<!-- Iconmoon Link End-->
 	<!-- Animate Link Start-->
-	<link href="{%static 'css/animate.css' %}" rel="stylesheet">
+	<head>
+		<link rel="stylesheet"href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+	</head>
+
+	<!-- <link href="{%static 'css/animate.css' %}" rel="stylesheet"> -->
 	<!-- Animate Link End-->
 	<!-- Chosen Link Start-->
 	<link href="{% static 'css/chosen.css' %}" rel="stylesheet">
@@ -38,12 +43,24 @@
 	<link href="{% static 'css/prettyPhoto.css' %}" rel="stylesheet">
 	<!-- Pretty Photo Link End-->
 	<!-- Themes / plugin Link Start-->
+	<!-- <link href="{% static 'style.css' %}" rel="stylesheet">
+	<link href="{% static 'css/cs-foodbakery-plugin.css' %}" rel="stylesheet">
+	<link href="{% static 'css/color.css' %}" rel="stylesheet">
+	<link href="{% static 'css/widget.css' %}" rel="stylesheet">
+	<link href="{% static 'css/responsive.css' %}" rel="stylesheet">
+	<link href="{% static 'css/rtl.css' %}" rel="stylesheet"> -->
+
+	<link href="{% static 'css/prettyPhoto.css' %}" rel="stylesheet">
 	<link href="{% static 'style.css' %}" rel="stylesheet">
 	<link href="{% static 'css/cs-foodbakery-plugin.css' %}" rel="stylesheet">
 	<link href="{% static 'css/color.css' %}" rel="stylesheet">
 	<link href="{% static 'css/widget.css' %}" rel="stylesheet">
 	<link href="{% static 'css/responsive.css' %}" rel="stylesheet">
 	<link href="{% static 'css/rtl.css' %}" rel="stylesheet">
+
+	<script src="https://code.jquery.com/jquery-4.0.0.min.js" integrity="sha256-OaVG6prZf4v69dPg6PhVattBXkcOWQB62pdZ3ORyrao=" crossorigin="anonymous"></script>
+
+
 
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 

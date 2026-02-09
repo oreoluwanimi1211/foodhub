@@ -78,8 +78,19 @@ function onPlaceChanged (){
 //         e.preventDefault();
         
 //         food_id = $(this).attr('data-id');
-//         alert(food_id);
+//         url = $(this).attr('data-url');
+        
+
+//         data = {
+//             food_id: food_id,
+//         }
+//         $.ajax({
+//             type: 'GET',
+//             url: url,
+//             data:data,
+//             success: function(response){
+//                 console.log(response)
+//             }
+//         })
 //     })
 // });
-
-

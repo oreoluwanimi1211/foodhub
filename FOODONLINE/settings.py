@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'accounts.apps.AccountsConfig',
     'vendor.apps.VendorConfig',
     'menu.apps.MenuConfig',
+    'marketplace.apps.MarketplaceConfig',
     
 ]
 
@@ -68,6 +69,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'accounts.context_processors.get_vendor',
+                'marketplace.context_processors.get_cart_counter',
             ],
         },
     },
@@ -128,7 +130,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR/'static'
 STATICFILES_DIRS = [
     'FOODONLINE/static'
@@ -147,3 +149,4 @@ EMAIL_HOST_USER = 'projecttech215@gmail.com'
 EMAIL_HOST_PASSWORD = 'losfljocclhmzxdu'
 EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = 'foodonline marketplace <projecttech215@gmail.com>'
+
